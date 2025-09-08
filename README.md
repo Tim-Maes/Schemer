@@ -1,4 +1,4 @@
-# 🎯 Schemer - The Ultimate Database Schema Diff Tool
+# 🎯 Schemer - Database Schema Diff Tool
 
 A powerful, single-file C# application that compares database schemas across different environments and generates migration scripts. Supports PostgreSQL, MySQL, SQL Server, and SQLite.
 
@@ -13,37 +13,20 @@ A powerful, single-file C# application that compares database schemas across dif
 
 ## 🚀 Quick Start
 
-1. Make the script executable (on Unix-like systems):
+**1. Copy the Schemer.cs file to your local machine.**
+
+**2. Run a schema comparison:**
+
+Example using the test databases provided in this repository:
+
    ```bash
-   chmod +x schemer.cs
+   dotnet run schemer.cs --source "Data Source=schemer_source.db" --target "Data Source=schemer_target.db" --type sqlite
    ```
 
-2. Run a schema comparison:
-   ```bash
-   ./schemer.cs --source "postgres://user:pass@localhost/source" --target "postgres://user:pass@localhost/target" --type postgres
-   ```
+**3. Example**
 
-## 💻 Usage Examples
+<img width="1994" height="1752" alt="image" src="https://github.com/user-attachments/assets/aa68e281-ac71-468a-baaf-fb15de5acf15" />
 
-### PostgreSQL
-```bash
-./schemer.cs --source "postgres://user:pass@localhost/source" --target "postgres://user:pass@localhost/target" --type postgres
-```
-
-### MySQL
-```bash
-./schemer.cs --source "mysql://user:pass@localhost/source" --target "mysql://user:pass@localhost/target" --type mysql --output sql
-```
-
-### SQL Server
-```bash
-./schemer.cs --source "Server=localhost;Database=source;Trusted_Connection=true;" --target "Server=localhost;Database=target;Trusted_Connection=true;" --type sqlserver
-```
-
-### SQLite
-```bash
-./schemer.cs --source "Data Source=source.db" --target "Data Source=target.db" --type sqlite --output json
-```
 
 ## 📋 Command Line Options
 
@@ -134,27 +117,6 @@ The following NuGet packages are automatically included:
 - **Timeout handling** for long-running operations
 - **Retry logic** with exponential backoff
 
-## 🎨 Example Output
-
-```
-🎯 Schemer
-The Ultimate Database Schema Diff Tool
-Lightning-fast • Production-ready • Cross-platform
-
-📊 Database Type: postgres
-📡 Source: postgresql://user***@localhost:5432/source
-📡 Target: postgresql://user***@localhost:5432/target
-
-┌─────────────────────────────────────┐
-│          📈 Summary                 │
-├─────────────────────────────────────┤
-│ 📊 Tables Compared    │ 12          │
-│ ⚠️ Differences Found  │ 3           │
-│ 🔴 Missing Tables     │ 1           │
-│ 🟡 Extra Tables       │ 0           │
-│ 🔄 Modified Tables    │ 2           │
-└─────────────────────────────────────┘
-```
 
 ## 🤝 Contributing
 
