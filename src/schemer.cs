@@ -6,7 +6,6 @@
 #:package Dapper@2.1.66
 #:package Spectre.Console@0.47.0
 #:package System.CommandLine@2.0.0-beta4.22272.1
-#:package Newtonsoft.Json@13.0.3
 
 using System;
 using System.Collections.Generic;
@@ -24,7 +23,8 @@ using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Data.Sqlite;
 using MySqlConnector;
-using Newtonsoft.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization.Metadata;
 using Npgsql;
 using Spectre.Console;
 
@@ -1375,7 +1375,16 @@ public static class Program
             migrationScript = GenerateMigrationScript(comparison, options)
         };
 
-        var json = JsonConvert.SerializeObject(jsonResult, Formatting.Indented);
+        var jsonOptions = new JsonSerializerOptions 
+        { 
+            WriteIndented = true,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
+        
+        // Enable unsafe reflection-based serialization for compatibility
+        jsonOptions.TypeInfoResolver = new DefaultJsonTypeInfoResolver();
+        
+        var json = JsonSerializer.Serialize(jsonResult, jsonOptions);
         
         var fileName = $"{options.MigrationName}.json";
         await File.WriteAllTextAsync(fileName, json);
