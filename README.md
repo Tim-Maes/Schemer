@@ -13,17 +13,24 @@ A powerful, single-file C# application that compares database schemas across dif
 
 ## 🚀 Quick Start
 
-**1. Copy the Schemer.cs file to your local machine.**
+### **1. Copy the Schemer.cs file to your local machine.**
 
-**2. Run a schema comparison:**
+You can clone the repo and put the Schemer.cs file somewhere you like. Make sure you have the [NET10](https://dotnet.microsoft.com/en-us/download/dotnet/10.0) SDK or Runtime installed. (Currently still in preview)
+
+### **2. Run a schema comparison:**
+
+You can run Schemer commands from the terminal.
 
 Example using the test databases provided in this repository:
 
-   ```bash
-   dotnet run schemer.cs --source "Data Source=schemer_source.db" --target "Data Source=schemer_target.db" --type sqlite
-   ```
+```bash
+dotnet run schemer.cs
+      --source "Data Source=schemer_source.db"
+      --target "Data Source=schemer_target.db"
+      --type sqlite
+```
 
-**3. Example**
+### **3. Example output**
 
 <img width="1994" height="1752" alt="image" src="https://github.com/user-attachments/assets/aa68e281-ac71-468a-baaf-fb15de5acf15" />
 
