@@ -117,27 +117,6 @@ The following NuGet packages are automatically included:
 - **Timeout handling** for long-running operations
 - **Retry logic** with exponential backoff
 
-## 🎨 Example Output
-
-```
-🎯 Schemer
-The Ultimate Database Schema Diff Tool
-Lightning-fast • Production-ready • Cross-platform
-
-📊 Database Type: postgres
-📡 Source: postgresql://user***@localhost:5432/source
-📡 Target: postgresql://user***@localhost:5432/target
-
-┌─────────────────────────────────────┐
-│          📈 Summary                 │
-├─────────────────────────────────────┤
-│ 📊 Tables Compared    │ 12          │
-│ ⚠️ Differences Found  │ 3           │
-│ 🔴 Missing Tables     │ 1           │
-│ 🟡 Extra Tables       │ 0           │
-│ 🔄 Modified Tables    │ 2           │
-└─────────────────────────────────────┘
-```
 
 ## 🤝 Contributing
 
