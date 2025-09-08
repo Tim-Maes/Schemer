@@ -1,4 +1,4 @@
-# 🎯 Schemer - The Ultimate Database Schema Diff Tool
+# 🎯 Schemer - Database Schema Diff Tool
 
 A powerful, single-file C# application that compares database schemas across different environments and generates migration scripts. Supports PostgreSQL, MySQL, SQL Server, and SQLite.
 
@@ -13,37 +13,20 @@ A powerful, single-file C# application that compares database schemas across dif
 
 ## 🚀 Quick Start
 
-1. Make the script executable (on Unix-like systems):
-   ```bash
-   chmod +x schemer.cs
-   ```
+1. Copy the Schemer.cs file to your local machine.
 
 2. Run a schema comparison:
+
+Example using the test databases provided in this repository:
+
    ```bash
-   ./schemer.cs --source "postgres://user:pass@localhost/source" --target "postgres://user:pass@localhost/target" --type postgres
+   dotnet run schemer.cs --source "Data Source=schemer_source.db" --target "Data Source=schemer_target.db" --type sqlite
    ```
 
-## 💻 Usage Examples
+3. Example
 
-### PostgreSQL
-```bash
-./schemer.cs --source "postgres://user:pass@localhost/source" --target "postgres://user:pass@localhost/target" --type postgres
-```
+<img width="1994" height="1752" alt="image" src="https://github.com/user-attachments/assets/aa68e281-ac71-468a-baaf-fb15de5acf15" />
 
-### MySQL
-```bash
-./schemer.cs --source "mysql://user:pass@localhost/source" --target "mysql://user:pass@localhost/target" --type mysql --output sql
-```
-
-### SQL Server
-```bash
-./schemer.cs --source "Server=localhost;Database=source;Trusted_Connection=true;" --target "Server=localhost;Database=target;Trusted_Connection=true;" --type sqlserver
-```
-
-### SQLite
-```bash
-./schemer.cs --source "Data Source=source.db" --target "Data Source=target.db" --type sqlite --output json
-```
 
 ## 📋 Command Line Options
 
