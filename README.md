@@ -102,7 +102,7 @@ Data Source=C:\path\to\database.sqlite
 
 ## 🛠️ Requirements
 
-- .NET 8.0 or later
+- .NET 10.0 preview
 - Database-specific drivers (automatically included via NuGet packages)
 
 ## 📦 Dependencies
