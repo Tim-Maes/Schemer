@@ -600,7 +600,7 @@ public static class Program
         
         AnsiConsole.Write(new Markup("[bold blue]🎯 The Ultimate Database Schema Diff Tool[/]").Centered());
         AnsiConsole.WriteLine();
-        AnsiConsole.Write(new Markup("[dim]Lightning-fast • Production-ready • Cross-platform[/]").Centered());
+        AnsiConsole.Write(new Markup("[dim]Lightning-fast • Cross-platform[/]").Centered());
         AnsiConsole.WriteLine();
         AnsiConsole.WriteLine();
     }
