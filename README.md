@@ -1,0 +1,169 @@
+# 🎯 Schemer - The Ultimate Database Schema Diff Tool
+
+A powerful, single-file C# application that compares database schemas across different environments and generates migration scripts. Supports PostgreSQL, MySQL, SQL Server, and SQLite.
+
+## ✨ Features
+
+- **Lightning-fast** schema comparison across all major databases
+- **Beautiful, colorful** console output with rich formatting
+- **Multiple output formats**: Console, SQL, JSON, Markdown
+- **Comprehensive change detection**: tables, columns, indexes, constraints
+- **Production-ready** migration script generation
+- **Zero-installation** single-file deployment
+
+## 🚀 Quick Start
+
+1. Make the script executable (on Unix-like systems):
+   ```bash
+   chmod +x schemer.cs
+   ```
+
+2. Run a schema comparison:
+   ```bash
+   ./schemer.cs --source "postgres://user:pass@localhost/source" --target "postgres://user:pass@localhost/target" --type postgres
+   ```
+
+## 💻 Usage Examples
+
+### PostgreSQL
+```bash
+./schemer.cs --source "postgres://user:pass@localhost/source" --target "postgres://user:pass@localhost/target" --type postgres
+```
+
+### MySQL
+```bash
+./schemer.cs --source "mysql://user:pass@localhost/source" --target "mysql://user:pass@localhost/target" --type mysql --output sql
+```
+
+### SQL Server
+```bash
+./schemer.cs --source "Server=localhost;Database=source;Trusted_Connection=true;" --target "Server=localhost;Database=target;Trusted_Connection=true;" --type sqlserver
+```
+
+### SQLite
+```bash
+./schemer.cs --source "Data Source=source.db" --target "Data Source=target.db" --type sqlite --output json
+```
+
+## 📋 Command Line Options
+
+| Option | Description | Required | Default |
+|--------|-------------|----------|---------|
+| `--source` | Source database connection string | ✅ | - |
+| `--target` | Target database connection string | ✅ | - |
+| `--type` | Database type (postgres, mysql, sqlserver, sqlite) | ✅ | - |
+| `--output` | Output format (console, sql, json, markdown) | ❌ | console |
+| `--tables` | Comma-separated list of specific tables to compare | ❌ | all tables |
+| `--ignore` | Comma-separated list of tables/columns to ignore | ❌ | none |
+| `--migration-name` | Name for generated migration file | ❌ | auto-generated |
+| `--verbose` | Detailed output including debug information | ❌ | false |
+
+## 📊 Output Formats
+
+### Console (Default)
+Beautiful, colorful console output with rich formatting showing:
+- Summary statistics
+- Missing, extra, and modified tables
+- Detailed column-level differences
+
+### SQL Migration Scripts
+Generate production-ready migration scripts:
+```bash
+./schemer.cs ... --output sql --migration-name "update_user_schema"
+```
+
+### JSON Reports
+Machine-readable JSON format for integration with other tools:
+```bash
+./schemer.cs ... --output json
+```
+
+### Markdown Documentation
+Human-readable documentation format:
+```bash
+./schemer.cs ... --output markdown
+```
+
+## 🔧 Connection String Examples
+
+### PostgreSQL
+```
+postgres://username:password@hostname:5432/database
+Host=hostname;Database=database;Username=username;Password=password
+```
+
+### MySQL
+```
+mysql://username:password@hostname:3306/database
+Server=hostname;Database=database;Uid=username;Pwd=password
+```
+
+### SQL Server
+```
+Server=hostname;Database=database;Integrated Security=true
+Server=hostname;Database=database;User Id=username;Password=password
+```
+
+### SQLite
+```
+Data Source=database.db
+Data Source=C:\path\to\database.sqlite
+```
+
+## 🛠️ Requirements
+
+- .NET 8.0 or later
+- Database-specific drivers (automatically included via NuGet packages)
+
+## 📦 Dependencies
+
+The following NuGet packages are automatically included:
+- `Npgsql` - PostgreSQL driver
+- `MySqlConnector` - MySQL driver  
+- `Microsoft.Data.SqlClient` - SQL Server driver
+- `Microsoft.Data.Sqlite` - SQLite driver
+- `Dapper` - Micro ORM
+- `Spectre.Console` - Rich console UI
+- `System.CommandLine` - Command line parsing
+- `Newtonsoft.Json` - JSON serialization
+
+## 🔒 Security Features
+
+- **Connection string validation** with basic SQL injection prevention
+- **Credential masking** in console output
+- **Timeout handling** for long-running operations
+- **Retry logic** with exponential backoff
+
+## 🎨 Example Output
+
+```
+🎯 Schemer
+The Ultimate Database Schema Diff Tool
+Lightning-fast • Production-ready • Cross-platform
+
+📊 Database Type: postgres
+📡 Source: postgresql://user***@localhost:5432/source
+📡 Target: postgresql://user***@localhost:5432/target
+
+┌─────────────────────────────────────┐
+│          📈 Summary                 │
+├─────────────────────────────────────┤
+│ 📊 Tables Compared    │ 12          │
+│ ⚠️ Differences Found  │ 3           │
+│ 🔴 Missing Tables     │ 1           │
+│ 🟡 Extra Tables       │ 0           │
+│ 🔄 Modified Tables    │ 2           │
+└─────────────────────────────────────┘
+```
+
+## 🤝 Contributing
+
+This is a single-file application designed for simplicity and portability. Contributions are welcome! Please ensure any changes maintain the single-file architecture.
+
+## 📄 License
+
+This project is open source. Feel free to use, modify, and distribute according to your needs.
+
+---
+
+*🎯 Built with love for database developers who need reliable schema comparison tools*

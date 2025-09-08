@@ -43,10 +43,11 @@ logs/
 ehthumbs.db
 Thumbs.db
 
-# Migration output files
+# Migration output files (except README.md)
 *.sql
 *.json
-*.md
+migration_*.md
+schema_*.md
 
 # Packages
 packages/
