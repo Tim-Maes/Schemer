@@ -160,10 +160,3 @@ Lightning-fast • Production-ready • Cross-platform
 
 This is a single-file application designed for simplicity and portability. Contributions are welcome! Please ensure any changes maintain the single-file architecture.
 
-## 📄 License
-
-This project is open source. Feel free to use, modify, and distribute according to your needs.
-
----
-
-*🎯 Built with love for database developers who need reliable schema comparison tools*
