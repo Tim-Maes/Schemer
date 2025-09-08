@@ -1,0 +1,173 @@
+{
+  "metadata": {
+    "generatedAt": "2025-09-08T09:11:42.2962457Z",
+    "migrationName": "test_json",
+    "databaseType": "SQLite"
+  },
+  "summary": {
+    "TablesCompared": 5,
+    "DifferencesFound": 3,
+    "MissingTables": 0,
+    "ExtraTables": 1,
+    "ModifiedTables": 2
+  },
+  "differences": {
+    "missingTables": [],
+    "extraTables": [
+      {
+        "Name": "categories",
+        "Schema": "main",
+        "Columns": [
+          {
+            "Name": "id",
+            "DataType": "INTEGER",
+            "IsNullable": true,
+            "DefaultValue": null,
+            "MaxLength": null,
+            "Precision": null,
+            "Scale": null,
+            "IsIdentity": true,
+            "IsComputed": false,
+            "Properties": {}
+          },
+          {
+            "Name": "name",
+            "DataType": "VARCHAR(100)",
+            "IsNullable": false,
+            "DefaultValue": null,
+            "MaxLength": null,
+            "Precision": null,
+            "Scale": null,
+            "IsIdentity": false,
+            "IsComputed": false,
+            "Properties": {}
+          },
+          {
+            "Name": "description",
+            "DataType": "TEXT",
+            "IsNullable": true,
+            "DefaultValue": null,
+            "MaxLength": null,
+            "Precision": null,
+            "Scale": null,
+            "IsIdentity": false,
+            "IsComputed": false,
+            "Properties": {}
+          }
+        ],
+        "Constraints": [],
+        "Properties": {},
+        "FullName": "main.categories"
+      }
+    ],
+    "modifiedTables": [
+      {
+        "TableName": "main.users",
+        "MissingColumns": [],
+        "ExtraColumns": [
+          {
+            "Name": "phone",
+            "DataType": "VARCHAR(20)",
+            "IsNullable": true,
+            "DefaultValue": null,
+            "MaxLength": null,
+            "Precision": null,
+            "Scale": null,
+            "IsIdentity": false,
+            "IsComputed": false,
+            "Properties": {}
+          }
+        ],
+        "ModifiedColumns": [
+          {
+            "ColumnName": "name",
+            "SourceColumn": {
+              "Name": "name",
+              "DataType": "VARCHAR(100)",
+              "IsNullable": false,
+              "DefaultValue": null,
+              "MaxLength": null,
+              "Precision": null,
+              "Scale": null,
+              "IsIdentity": false,
+              "IsComputed": false,
+              "Properties": {}
+            },
+            "TargetColumn": {
+              "Name": "name",
+              "DataType": "VARCHAR(120)",
+              "IsNullable": false,
+              "DefaultValue": null,
+              "MaxLength": null,
+              "Precision": null,
+              "Scale": null,
+              "IsIdentity": false,
+              "IsComputed": false,
+              "Properties": {}
+            },
+            "Differences": [
+              "Data type changed from VARCHAR(100) to VARCHAR(120)"
+            ]
+          }
+        ],
+        "MissingConstraints": [],
+        "ExtraConstraints": [],
+        "ModifiedConstraints": []
+      },
+      {
+        "TableName": "main.products",
+        "MissingColumns": [],
+        "ExtraColumns": [
+          {
+            "Name": "is_active",
+            "DataType": "BOOLEAN",
+            "IsNullable": true,
+            "DefaultValue": "1",
+            "MaxLength": null,
+            "Precision": null,
+            "Scale": null,
+            "IsIdentity": false,
+            "IsComputed": false,
+            "Properties": {}
+          }
+        ],
+        "ModifiedColumns": [
+          {
+            "ColumnName": "price",
+            "SourceColumn": {
+              "Name": "price",
+              "DataType": "DECIMAL(10,2)",
+              "IsNullable": false,
+              "DefaultValue": null,
+              "MaxLength": null,
+              "Precision": null,
+              "Scale": null,
+              "IsIdentity": false,
+              "IsComputed": false,
+              "Properties": {}
+            },
+            "TargetColumn": {
+              "Name": "price",
+              "DataType": "DECIMAL(12,2)",
+              "IsNullable": false,
+              "DefaultValue": null,
+              "MaxLength": null,
+              "Precision": null,
+              "Scale": null,
+              "IsIdentity": false,
+              "IsComputed": false,
+              "Properties": {}
+            },
+            "Differences": [
+              "Data type changed from DECIMAL(10,2) to DECIMAL(12,2)"
+            ]
+          }
+        ],
+        "MissingConstraints": [],
+        "ExtraConstraints": [],
+        "ModifiedConstraints": []
+      }
+    ]
+  },
+  "migrationScript": "-- Migration: test_json\r\n-- Generated: 2025-09-08 11:11:42\r\n-- Database Type: SQLite\r\n-- 🎯 Generated by Schemer - The Ultimate Database Schema Diff Tool\r\n\r\nBEGIN TRANSACTION;\r\n\r\n-- Modify table: main.users\r\n-- SQLite does not support ALTER COLUMN. Manual migration required for main.users.name\r\n\r\n-- Modify table: main.products\r\n-- SQLite does not support ALTER COLUMN. Manual migration required for main.products.price\r\n\r\nCOMMIT;\r\n\r\n-- Migration completed successfully! 🎉\r\n-- Review this script carefully before executing in production.\r\n"
+}

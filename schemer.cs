@@ -5,7 +5,7 @@
 #:package Microsoft.Data.Sqlite@8.0.0
 #:package Dapper@2.1.66
 #:package Spectre.Console@0.47.0
-#:package System.CommandLine@2.0.0
+#:package System.CommandLine@2.0.0-beta4.22272.1
 #:package Newtonsoft.Json@13.0.3
 
 using System;
@@ -59,7 +59,7 @@ public static class Program
             e.Cancel = true;
             AnsiConsole.Write(new Panel("Operation cancelled by user")
                 .Header("⚠️ [bold yellow]Cancelled[/]")
-                .BorderColor(Color.Yellow));
+                .BorderColor(Spectre.Console.Color.Yellow));
             Environment.Exit(130); // Standard exit code for Ctrl+C
         };
 
@@ -547,35 +547,35 @@ public static class Program
             await OutputResults(comparison, options);
 
             // Show completion message
-            var successRule = new Rule("[bold green]✅ Schema comparison completed successfully![/]");
+            var successRule = new Spectre.Console.Rule("[bold green]✅ Schema comparison completed successfully![/]");
             AnsiConsole.Write(successRule);
         }
         catch (ValidationException ex)
         {
             AnsiConsole.Write(new Panel(ex.Message)
                 .Header("❌ [bold red]Validation Error[/]")
-                .BorderColor(Color.Red));
+                .BorderColor(Spectre.Console.Color.Red));
             Environment.Exit(1);
         }
         catch (TimeoutException ex)
         {
             AnsiConsole.Write(new Panel(ex.Message)
                 .Header("⏰ [bold yellow]Timeout Error[/]")
-                .BorderColor(Color.Yellow));
+                .BorderColor(Spectre.Console.Color.Yellow));
             Environment.Exit(1);
         }
         catch (UnauthorizedAccessException ex)
         {
             AnsiConsole.Write(new Panel($"Access denied: {ex.Message}")
                 .Header("🔒 [bold red]Permission Error[/]")
-                .BorderColor(Color.Red));
+                .BorderColor(Spectre.Console.Color.Red));
             Environment.Exit(1);
         }
         catch (Exception ex)
         {
             AnsiConsole.Write(new Panel($"An unexpected error occurred: {ex.Message}")
                 .Header("💥 [bold red]Error[/]")
-                .BorderColor(Color.Red));
+                .BorderColor(Spectre.Console.Color.Red));
             
             if (options.Verbose)
             {
@@ -594,7 +594,7 @@ public static class Program
     {
         var figlet = new FigletText("Schemer")
             .Centered()
-            .Color(Color.Blue);
+            .Color(Spectre.Console.Color.Blue);
         
         AnsiConsole.Write(figlet);
         
@@ -680,12 +680,13 @@ public static class Program
             throw new ValidationException($"{name} connection string is too long (max 2000 characters)");
 
         // Basic SQL injection prevention - look for suspicious patterns
-        var suspiciousPatterns = new[] { "--", ";", "/*", "*/" };
-        foreach (var pattern in suspiciousPatterns)
-        {
-            if (connectionString.Contains(pattern, StringComparison.OrdinalIgnoreCase))
-                throw new ValidationException($"{name} connection string contains suspicious pattern: {pattern}");
-        }
+        // Temporarily commented out to allow standard connection string formats
+        // var suspiciousPatterns = new[] { "--", ";", "/*", "*/" };
+        // foreach (var pattern in suspiciousPatterns)
+        // {
+        //     if (connectionString.Contains(pattern, StringComparison.OrdinalIgnoreCase))
+        //         throw new ValidationException($"{name} connection string contains suspicious pattern: {pattern}");
+        // }
     }
 
     /// <summary>
@@ -1061,9 +1062,9 @@ public static class Program
     private static void OutputConsole(SchemaComparison comparison, ComparisonOptions options)
     {
         // Summary panel
-        var summaryTable = new Table()
+        var summaryTable = new Spectre.Console.Table()
             .Border(TableBorder.Rounded)
-            .BorderColor(Color.Blue)
+            .BorderColor(Spectre.Console.Color.Blue)
             .AddColumn("[bold]Metric[/]")
             .AddColumn("[bold]Count[/]");
 
@@ -1075,7 +1076,7 @@ public static class Program
 
         var summaryPanel = new Panel(summaryTable)
             .Header("📈 [bold blue]Schema Comparison Summary[/]")
-            .BorderColor(Color.Blue);
+            .BorderColor(Spectre.Console.Color.Blue);
 
         AnsiConsole.Write(summaryPanel);
         AnsiConsole.WriteLine();
@@ -1083,9 +1084,9 @@ public static class Program
         // Missing tables
         if (comparison.MissingTables.Any())
         {
-            var missingTable = new Table()
+            var missingTable = new Spectre.Console.Table()
                 .Border(TableBorder.Rounded)
-                .BorderColor(Color.Red)
+                .BorderColor(Spectre.Console.Color.Red)
                 .AddColumn("[bold]Table Name[/]")
                 .AddColumn("[bold]Schema[/]")
                 .AddColumn("[bold]Columns[/]");
@@ -1101,7 +1102,7 @@ public static class Program
 
             var missingPanel = new Panel(missingTable)
                 .Header("🔴 [bold red]Missing Tables (in source, not in target)[/]")
-                .BorderColor(Color.Red);
+                .BorderColor(Spectre.Console.Color.Red);
 
             AnsiConsole.Write(missingPanel);
             AnsiConsole.WriteLine();
@@ -1110,9 +1111,9 @@ public static class Program
         // Extra tables
         if (comparison.ExtraTables.Any())
         {
-            var extraTable = new Table()
+            var extraTable = new Spectre.Console.Table()
                 .Border(TableBorder.Rounded)
-                .BorderColor(Color.Yellow)
+                .BorderColor(Spectre.Console.Color.Yellow)
                 .AddColumn("[bold]Table Name[/]")
                 .AddColumn("[bold]Schema[/]")
                 .AddColumn("[bold]Columns[/]");
@@ -1128,7 +1129,7 @@ public static class Program
 
             var extraPanel = new Panel(extraTable)
                 .Header("🟡 [bold yellow]Extra Tables (in target, not in source)[/]")
-                .BorderColor(Color.Yellow);
+                .BorderColor(Spectre.Console.Color.Yellow);
 
             AnsiConsole.Write(extraPanel);
             AnsiConsole.WriteLine();
@@ -1149,12 +1150,12 @@ public static class Program
         {
             var successPanel = new Panel(new Markup("[bold green]✅ Schemas are identical! No differences found.[/]"))
                 .Header("🎉 [bold green]Success[/]")
-                .BorderColor(Color.Green);
+                .BorderColor(Spectre.Console.Color.Green);
             AnsiConsole.Write(successPanel);
         }
         else
         {
-            var rule = new Rule("[bold blue]Migration Options[/]");
+            var rule = new Spectre.Console.Rule("[bold blue]Migration Options[/]");
             AnsiConsole.Write(rule);
             
             AnsiConsole.WriteLine();
@@ -1223,7 +1224,7 @@ public static class Program
         AnsiConsole.WriteLine();
         AnsiConsole.Write(new Panel(sql)
             .Header($"📄 [bold]{fileName}[/]")
-            .BorderColor(Color.Green));
+            .BorderColor(Spectre.Console.Color.Green));
     }
 
     /// <summary>
@@ -1386,7 +1387,7 @@ public static class Program
             AnsiConsole.WriteLine();
             AnsiConsole.Write(new Panel(json)
                 .Header("📊 [bold]JSON Output[/]")
-                .BorderColor(Color.Cyan));
+                .BorderColor(Spectre.Console.Color.Blue));
         }
     }
 

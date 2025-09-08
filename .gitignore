@@ -20,11 +20,6 @@ artifacts/
 # Rider
 .idea/
 
-# Database files (if any for testing)
-*.db
-*.sqlite
-*.sqlite3
-
 # Logs
 logs/
 *.log
@@ -43,9 +38,6 @@ logs/
 ehthumbs.db
 Thumbs.db
 
-# Migration output files (except README.md)
-*.sql
-*.json
 migration_*.md
 schema_*.md
 
