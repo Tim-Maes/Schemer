@@ -1,0 +1,57 @@
+# Build outputs
+bin/
+obj/
+out/
+artifacts/
+
+# User-specific files
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio / Visual Studio Code
+.vs/
+.vscode/
+*.suo
+*.sdf
+*.opensdf
+*.vcxproj.user
+
+# Rider
+.idea/
+
+# Database files (if any for testing)
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+logs/
+*.log
+
+# Runtime files
+*.dll
+*.exe
+*.pdb
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Migration output files
+*.sql
+*.json
+*.md
+
+# Packages
+packages/
+*.nupkg
+
+# Temporary files
+*.tmp
+*.temp
