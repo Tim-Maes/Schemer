@@ -1,11 +1,12 @@
 #!/usr/bin/env dotnet run
-#:package Npgsql@8.0.0
+#:package Npgsql@8.0.8
 #:package MySqlConnector@2.3.0  
-#:package Microsoft.Data.SqlClient@5.1.0
+#:package Microsoft.Data.SqlClient@5.2.3
 #:package Microsoft.Data.Sqlite@8.0.0
 #:package Dapper@2.1.66
 #:package Spectre.Console@0.47.0
 #:package System.CommandLine@2.0.0-beta4.22272.1
+#:property PublishAot=false
 
 using System;
 using System.Collections.Generic;
