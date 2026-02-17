@@ -497,9 +497,9 @@ public static class Program
             var schemaReader = CreateSchemaReader(options.DatabaseType);
             
             // Show connection info (with masked credentials)
-            AnsiConsole.WriteLine($"📊 [bold]Database Type:[/] {options.DatabaseType}");
-            AnsiConsole.WriteLine($"📡 [bold]Source:[/] {schemaReader.GetConnectionDisplayName(options.SourceConnectionString)}");
-            AnsiConsole.WriteLine($"📡 [bold]Target:[/] {schemaReader.GetConnectionDisplayName(options.TargetConnectionString)}");
+            AnsiConsole.MarkupLine($"📊 [bold]Database Type:[/] {options.DatabaseType}");
+            AnsiConsole.MarkupLine($"📡 [bold]Source:[/] {schemaReader.GetConnectionDisplayName(options.SourceConnectionString)}");
+            AnsiConsole.MarkupLine($"📡 [bold]Target:[/] {schemaReader.GetConnectionDisplayName(options.TargetConnectionString)}");
             AnsiConsole.WriteLine();
 
             // Show progress while reading schemas
@@ -1221,7 +1221,7 @@ public static class Program
         var fileName = $"{options.MigrationName}.sql";
         await File.WriteAllTextAsync(fileName, sql);
         
-        AnsiConsole.WriteLine($"✅ Migration script saved to: [cyan]{fileName}[/]");
+        AnsiConsole.MarkupLine($"✅ Migration script saved to: [cyan]{fileName}[/]");
         AnsiConsole.WriteLine();
         AnsiConsole.Write(new Panel(sql)
             .Header($"📄 [bold]{fileName}[/]")
@@ -1390,7 +1390,7 @@ public static class Program
         var fileName = $"{options.MigrationName}.json";
         await File.WriteAllTextAsync(fileName, json);
         
-        AnsiConsole.WriteLine($"✅ JSON report saved to: [cyan]{fileName}[/]");
+        AnsiConsole.MarkupLine($"✅ JSON report saved to: [cyan]{fileName}[/]");
         
         if (options.Verbose)
         {
@@ -1510,7 +1510,7 @@ public static class Program
         var fileName = $"{options.MigrationName}.md";
         await File.WriteAllTextAsync(fileName, markdown.ToString());
         
-        AnsiConsole.WriteLine($"✅ Markdown report saved to: [cyan]{fileName}[/]");
+        AnsiConsole.MarkupLine($"✅ Markdown report saved to: [cyan]{fileName}[/]");
     }
 
     #endregion
