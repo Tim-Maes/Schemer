@@ -1070,7 +1070,7 @@ public static class Program
             .AddColumn("[bold]Count[/]");
 
         summaryTable.AddRow("📊 Tables Compared", comparison.Summary.TablesCompared.ToString());
-        summaryTable.AddRow("⚠️  Differences Found", comparison.Summary.DifferencesFound.ToString());
+        summaryTable.AddRow("⚠️ Differences Found", comparison.Summary.DifferencesFound.ToString());
         summaryTable.AddRow("🔴 Missing Tables", comparison.Summary.MissingTables.ToString());
         summaryTable.AddRow("🟡 Extra Tables", comparison.Summary.ExtraTables.ToString());  
         summaryTable.AddRow("🔄 Modified Tables", comparison.Summary.ModifiedTables.ToString());
@@ -1101,7 +1101,7 @@ public static class Program
                 );
             }
 
-            var missingPanel = new Panel(missingTable)
+            var missingPanel = new Panel(missingTable) { Width = 48 }
                 .Header("🔴 [bold red]Missing Tables (in source, not in target)[/]")
                 .BorderColor(Spectre.Console.Color.Red);
 
@@ -1128,7 +1128,7 @@ public static class Program
                 );
             }
 
-            var extraPanel = new Panel(extraTable)
+            var extraPanel = new Panel(extraTable) { Width = 46 }
                 .Header("🟡 [bold yellow]Extra Tables (in target, not in source)[/]")
                 .BorderColor(Spectre.Console.Color.Yellow);
 
