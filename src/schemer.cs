@@ -1,11 +1,12 @@
 #!/usr/bin/env dotnet run
-#:package Npgsql@8.0.0
+#:package Npgsql@8.0.8
 #:package MySqlConnector@2.3.0  
-#:package Microsoft.Data.SqlClient@5.1.0
+#:package Microsoft.Data.SqlClient@5.2.3
 #:package Microsoft.Data.Sqlite@8.0.0
 #:package Dapper@2.1.66
 #:package Spectre.Console@0.47.0
 #:package System.CommandLine@2.0.0-beta4.22272.1
+#:property PublishAot=false
 
 using System;
 using System.Collections.Generic;
@@ -496,9 +497,9 @@ public static class Program
             var schemaReader = CreateSchemaReader(options.DatabaseType);
             
             // Show connection info (with masked credentials)
-            AnsiConsole.WriteLine($"📊 [bold]Database Type:[/] {options.DatabaseType}");
-            AnsiConsole.WriteLine($"📡 [bold]Source:[/] {schemaReader.GetConnectionDisplayName(options.SourceConnectionString)}");
-            AnsiConsole.WriteLine($"📡 [bold]Target:[/] {schemaReader.GetConnectionDisplayName(options.TargetConnectionString)}");
+            AnsiConsole.MarkupLine($"📊 [bold]Database Type:[/] {options.DatabaseType}");
+            AnsiConsole.MarkupLine($"📡 [bold]Source:[/] {schemaReader.GetConnectionDisplayName(options.SourceConnectionString)}");
+            AnsiConsole.MarkupLine($"📡 [bold]Target:[/] {schemaReader.GetConnectionDisplayName(options.TargetConnectionString)}");
             AnsiConsole.WriteLine();
 
             // Show progress while reading schemas
@@ -1069,7 +1070,7 @@ public static class Program
             .AddColumn("[bold]Count[/]");
 
         summaryTable.AddRow("📊 Tables Compared", comparison.Summary.TablesCompared.ToString());
-        summaryTable.AddRow("⚠️  Differences Found", comparison.Summary.DifferencesFound.ToString());
+        summaryTable.AddRow("⚠️ Differences Found", comparison.Summary.DifferencesFound.ToString());
         summaryTable.AddRow("🔴 Missing Tables", comparison.Summary.MissingTables.ToString());
         summaryTable.AddRow("🟡 Extra Tables", comparison.Summary.ExtraTables.ToString());  
         summaryTable.AddRow("🔄 Modified Tables", comparison.Summary.ModifiedTables.ToString());
@@ -1100,7 +1101,7 @@ public static class Program
                 );
             }
 
-            var missingPanel = new Panel(missingTable)
+            var missingPanel = new Panel(missingTable) { Width = 48 }
                 .Header("🔴 [bold red]Missing Tables (in source, not in target)[/]")
                 .BorderColor(Spectre.Console.Color.Red);
 
@@ -1127,7 +1128,7 @@ public static class Program
                 );
             }
 
-            var extraPanel = new Panel(extraTable)
+            var extraPanel = new Panel(extraTable) { Width = 46 }
                 .Header("🟡 [bold yellow]Extra Tables (in target, not in source)[/]")
                 .BorderColor(Spectre.Console.Color.Yellow);
 
@@ -1220,7 +1221,7 @@ public static class Program
         var fileName = $"{options.MigrationName}.sql";
         await File.WriteAllTextAsync(fileName, sql);
         
-        AnsiConsole.WriteLine($"✅ Migration script saved to: [cyan]{fileName}[/]");
+        AnsiConsole.MarkupLine($"✅ Migration script saved to: [cyan]{fileName}[/]");
         AnsiConsole.WriteLine();
         AnsiConsole.Write(new Panel(sql)
             .Header($"📄 [bold]{fileName}[/]")
@@ -1389,7 +1390,7 @@ public static class Program
         var fileName = $"{options.MigrationName}.json";
         await File.WriteAllTextAsync(fileName, json);
         
-        AnsiConsole.WriteLine($"✅ JSON report saved to: [cyan]{fileName}[/]");
+        AnsiConsole.MarkupLine($"✅ JSON report saved to: [cyan]{fileName}[/]");
         
         if (options.Verbose)
         {
@@ -1509,7 +1510,7 @@ public static class Program
         var fileName = $"{options.MigrationName}.md";
         await File.WriteAllTextAsync(fileName, markdown.ToString());
         
-        AnsiConsole.WriteLine($"✅ Markdown report saved to: [cyan]{fileName}[/]");
+        AnsiConsole.MarkupLine($"✅ Markdown report saved to: [cyan]{fileName}[/]");
     }
 
     #endregion
